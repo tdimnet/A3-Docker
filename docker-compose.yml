@@ -1,5 +1,21 @@
 services:
-  node-app:
-    build: .
-    tty: true
-    stdin_open: true
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: example
+      MARIADB_DATABASE: mydatabase
+      MARIADB_USER: myuser
+      MARIADB_PASSWORD: mypassword
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  db_data:

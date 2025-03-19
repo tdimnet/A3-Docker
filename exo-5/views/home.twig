@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Job Listings with Filtering</title>
+
+  <link rel="stylesheet" href="../public/css/normalize.css" />
+  <link rel="stylesheet" href="../public/css/reset.css" />
+  <link rel="stylesheet" href="../public/css/main.css" />
+</head>
+
+<body>
+  <header class="main-header">
+  </header>
+  <main class="main-wrapper">
+    <ul class="job-offers">
+      {% for jobOffer in jobOffers %}
+      <li class="job-offer">
+        id: {{ jobOffer.job_offer_id }}
+        <br />
+        job title: {{ jobOffer.job_title }}
+        <br />
+
+        <hr />
+
+        {% set tags = jobOffer.tags|split(', ') %}
+        {% for tag in tags %}
+        <span>{{ tag }}</span>
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ul>
+  </main>
+</body>
+</html>
+
