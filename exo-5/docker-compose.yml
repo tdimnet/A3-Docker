@@ -3,6 +3,8 @@ services:
     build: .
     tty: true
     stdin_open: true
+    env_file:
+      - ./.env
     ports:
       - 8100:80
     volumes:
@@ -16,6 +18,8 @@ services:
       MARIADB_USER: adminer
       MARIADB_PASSWORD: toto90
       MARIADB_DATABASE: jobs
+    volumes:
+      - ./config/data.sql:/docker-entrypoint-initdb.d/data.sql
 
 
   adminer:
