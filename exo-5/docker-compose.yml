@@ -1,0 +1,25 @@
+services:
+  php-app:
+    build: .
+    tty: true
+    stdin_open: true
+    ports:
+      - 8100:80
+    volumes:
+      - ./:/var/www/html
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: example
+      MARIADB_USER: adminer
+      MARIADB_PASSWORD: toto90
+      MARIADB_DATABASE: jobs
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
